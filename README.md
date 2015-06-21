@@ -1,39 +1,31 @@
-## Create one R script called run_analysis.R that does the following:
- 1. Merges the training and the test sets to create one data set.
- 2. Extracts only the measurements on the mean and standard deviation for each measurement.
- 3. Uses descriptive activity names to name the activities in the data set
- 4. Appropriately labels the data set with descriptive activity names.
- 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+##Description for the behaviour of the run_analysis.R Code:
 
-if (!require("data.table")) {
-  install.packages("data.table")
-}
+#Set the libraries to get some functions that will be executed 
+library(data.table) ## if it's not intalled then run install.packages("data.table")
+library(reshape2) ## if it's not intalled then run install.packages("reshape2")
 
-if (!require("reshape2")) {
-  install.packages("reshape2")
-}
+---------------------------------------------------------------------------------------------------
+#In this part we'll be working with the Tests files, set in them into tidy data
 
-require("data.table")
-require("reshape2")
-
- Load: activity labels
-activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2]
-
- Load: data column names
-features <- read.table("./UCI HAR Dataset/features.txt")[,2]
+#Read the raw files 
+act_lab <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2] ##Get the Activity Labels text file and storage it in act_lab variable
+feat <- read.table("./UCI HAR Dataset/features.txt")[,2] ##Get the Features text file and storage it in feat variable
+x_test <- read.table("./UCI HAR Dataset/test/X_test.txt") ##Get the X-Test file and storage it in x_test variable
+y_test <- read.table("./UCI HAR Dataset/test/y_test.txt") ##Get the Y-Test file and storage it in y_test variable
+subj_test <- read.table("./UCI HAR Dataset/test/subject_test.txt") ##Get the Subject-test file and storage it in subj_test variable
 
  Extract only the measurements on the mean and standard deviation for each measurement.
 extract_features <- grepl("mean|std", features)
 
  Load and process X_test & y_test data.
-X_test <- read.table("./UCI HAR Dataset/test/X_test.txt")
-y_test <- read.table("./UCI HAR Dataset/test/y_test.txt")
-subject_test <- read.table("./UCI HAR Dataset/test/subject_test.txt")
+
+#Extracts, from the raw files, the information we need to make the tidy data:
+
+x_test = X_test[,extract_features] ##Extracts the measurements for the mean an standard deviation only
+
 
 names(X_test) = features
 
- Extract only the measurements on the mean and standard deviation for each measurement.
-X_test = X_test[,extract_features]
 
  Load activity labels
 y_test[,2] = activity_labels[y_test[,1]]

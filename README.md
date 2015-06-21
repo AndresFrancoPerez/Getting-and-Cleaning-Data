@@ -1,6 +1,6 @@
-##Description for the behaviour of the run_analysis.R Code:
+#Description for the behaviour of the run_analysis.R Code:
 
-#Set the libraries to get some functions that will be executed 
+####Set the libraries to get some functions that will be executed 
 library(data.table) ## if it's not intalled then run install.packages("data.table")
 library(reshape2) ## if it's not intalled then run install.packages("reshape2")
 

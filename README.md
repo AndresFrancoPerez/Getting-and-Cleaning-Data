@@ -11,7 +11,7 @@ You should create one R script called run_analysis.R that does the following.
 
 ###This project contains...
 * A script in R language, with the codes to storage, process and obtain tidy data.
-* A code book, including the description of the variables (The ones that came in the raw data source and the ones calculated and used in the tidy data contruction.
+* A code book, including the description of the variables (The ones that came in the raw data source and the ones calculated and used in the tidy data contruction).
 * A README file with the summary of the project.
 
 ###Script logic (in the run_analysis.R file)
